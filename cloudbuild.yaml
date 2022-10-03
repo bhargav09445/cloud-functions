@@ -1,0 +1,10 @@
+steps:
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+  dir: 'git-function'
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['test']
+  dir: 'git-function'
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['functions', 'deploy', 'cicd-function', '--trigger-http', '--runtime', 'nodejs16', '--entry-point', 'helloFromGit']
+  dir: 'git-function'
